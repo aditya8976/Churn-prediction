@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Gauge, Sparkles, BarChart2, FileSpreadsheet, Download, UserCheck, Smartphone, LineChart, ShieldCheck } from 'lucide-react';
+import { Cpu, Gauge, Sparkles, BarChart2, FileSpreadsheet, Download, Smartphone, LineChart, ShieldCheck } from 'lucide-react';
 
 export default function FeaturesGrid({ setActiveTab }) {
   const features = [
@@ -60,13 +60,13 @@ export default function FeaturesGrid({ setActiveTab }) {
   ];
 
   return (
-    <section className="py-20 bg-slate-950">
+    <section className="py-20 bg-slate-50 dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <h3 className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Enterprise Capabilities</h3>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Built for Modern Data Teams & Marketers</h2>
-          <p className="text-slate-400 text-base">
+          <h3 className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Enterprise Capabilities</h3>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Built for Modern Data Teams & Marketers</h2>
+          <p className="text-slate-600 dark:text-slate-400 text-base font-medium">
             Everything you need to predict, understand, and prevent customer churn across your platform.
           </p>
         </div>
@@ -78,17 +78,17 @@ export default function FeaturesGrid({ setActiveTab }) {
               <div 
                 key={idx}
                 onClick={() => setActiveTab(item.tab)}
-                className="glass-card p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/50 hover:bg-slate-900/60 transition-all duration-300 group cursor-pointer flex flex-col justify-between"
+                className="glass-card p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-all duration-300 group cursor-pointer flex flex-col justify-between shadow-sm hover:shadow-md bg-white dark:bg-slate-900"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-600/15 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">{item.title}</h3>
-                  <p className="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">{item.title}</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-medium">{item.desc}</p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center text-xs font-semibold text-indigo-400 group-hover:translate-x-1 transition-transform">
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
                   <span>Explore Feature</span>
                   <span className="ml-1">→</span>
                 </div>

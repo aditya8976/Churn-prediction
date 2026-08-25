@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cpu, CheckCircle2, ShieldCheck, BarChart2, Layers, AlertCircle, Sparkles, BookOpen } from 'lucide-react';
+import { Cpu, BarChart2, Layers, AlertCircle, BookOpen } from 'lucide-react';
 
 export default function ModelInfoPage() {
   const [metadata, setMetadata] = useState(null);
@@ -9,7 +9,6 @@ export default function ModelInfoPage() {
       .then(res => res.json())
       .then(data => setMetadata(data))
       .catch(() => {
-        // Fallback metadata if offline
         setMetadata({
           metrics: {
             accuracy: 0.962,
@@ -40,13 +39,13 @@ export default function ModelInfoPage() {
     <div className="space-y-10 animate-fadeIn">
       
       {/* Page Header */}
-      <div className="glass-card p-8 rounded-3xl border border-slate-800 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-purple-950/40">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-3">
+      <div className="glass-card p-8 rounded-3xl border border-indigo-100 dark:border-slate-800 bg-gradient-to-r from-indigo-50/90 via-white to-purple-50/90 dark:from-indigo-950/40 dark:via-slate-900 dark:to-purple-950/40 shadow-sm">
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 text-xs font-bold mb-3 shadow-sm">
           <Cpu className="w-3.5 h-3.5" />
           <span>Scikit-Learn Serialized Artifact Specs</span>
         </div>
-        <h2 className="text-3xl font-extrabold text-white">Machine Learning Model Architecture</h2>
-        <p className="text-slate-300 text-sm mt-2 max-w-3xl leading-relaxed">
+        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Machine Learning Model Architecture</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-sm mt-2 max-w-3xl leading-relaxed font-medium">
           Comprehensive benchmark metrics, dataset specifications, feature transformation pipeline, and model validation details serialized directly from the Jupyter Notebook training execution.
         </p>
       </div>
@@ -60,10 +59,10 @@ export default function ModelInfoPage() {
           { label: "F1 Score", value: `${(metrics.f1_score * 100).toFixed(1)}%`, desc: "Harmonic mean of precision & recall" },
           { label: "ROC-AUC", value: `${metrics.roc_auc.toFixed(3)}`, desc: "Separability AUC score" },
         ].map((m, idx) => (
-          <div key={idx} className="glass-card p-5 rounded-2xl border border-slate-800 text-center">
-            <span className="text-xs text-indigo-400 font-semibold uppercase">{m.label}</span>
-            <div className="text-3xl font-extrabold text-white mt-1">{m.value}</div>
-            <p className="text-[10px] text-slate-400 mt-1">{m.desc}</p>
+          <div key={idx} className="glass-card p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-center shadow-sm bg-white dark:bg-slate-900">
+            <span className="text-xs text-indigo-600 dark:text-indigo-400 font-extrabold uppercase">{m.label}</span>
+            <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">{m.value}</div>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-medium">{m.desc}</p>
           </div>
         ))}
       </div>
@@ -72,85 +71,85 @@ export default function ModelInfoPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Confusion Matrix Visual Heatmap */}
-        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
+        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 space-y-6 shadow-sm bg-white dark:bg-slate-900">
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center space-x-2">
-              <BarChart2 className="w-5 h-5 text-indigo-400" />
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+              <BarChart2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
               <span>Confusion Matrix Heatmap</span>
             </h3>
-            <p className="text-xs text-slate-400 mt-1">Evaluated on 1,000 out-of-sample holdout test profiles</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Evaluated on 1,000 out-of-sample holdout test profiles</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             
             {/* True Negative */}
-            <div className="glass-card p-5 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 text-center">
-              <span className="text-[10px] text-emerald-300 font-bold uppercase">True Negative (Retained)</span>
-              <div className="text-3xl font-extrabold text-emerald-400 mt-2">{cm[0][0]}</div>
-              <p className="text-[10px] text-slate-400 mt-1">Correctly predicted non-churners</p>
+            <div className="glass-card p-5 rounded-2xl border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50/60 dark:bg-emerald-950/20 text-center shadow-sm">
+              <span className="text-[10px] text-emerald-700 dark:text-emerald-300 font-extrabold uppercase">True Negative (Retained)</span>
+              <div className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2">{cm[0][0]}</div>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-medium">Correctly predicted non-churners</p>
             </div>
 
             {/* False Positive */}
-            <div className="glass-card p-5 rounded-2xl border border-rose-500/20 bg-rose-950/10 text-center">
-              <span className="text-[10px] text-rose-300 font-bold uppercase">False Positive (False Alarm)</span>
-              <div className="text-3xl font-extrabold text-rose-400 mt-2">{cm[0][1]}</div>
-              <p className="text-[10px] text-slate-400 mt-1">Retained users predicted as churn</p>
+            <div className="glass-card p-5 rounded-2xl border border-rose-200 dark:border-rose-500/20 bg-rose-50/60 dark:bg-rose-950/10 text-center shadow-sm">
+              <span className="text-[10px] text-rose-700 dark:text-rose-300 font-extrabold uppercase">False Positive (False Alarm)</span>
+              <div className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-2">{cm[0][1]}</div>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-medium">Retained users predicted as churn</p>
             </div>
 
             {/* False Negative */}
-            <div className="glass-card p-5 rounded-2xl border border-rose-500/20 bg-rose-950/10 text-center">
-              <span className="text-[10px] text-rose-300 font-bold uppercase">False Negative (Missed Churn)</span>
-              <div className="text-3xl font-extrabold text-rose-400 mt-2">{cm[1][0]}</div>
-              <p className="text-[10px] text-slate-400 mt-1">Churners missed by classifier</p>
+            <div className="glass-card p-5 rounded-2xl border border-rose-200 dark:border-rose-500/20 bg-rose-50/60 dark:bg-rose-950/10 text-center shadow-sm">
+              <span className="text-[10px] text-rose-700 dark:text-rose-300 font-extrabold uppercase">False Negative (Missed Churn)</span>
+              <div className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-2">{cm[1][0]}</div>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-medium">Churners missed by classifier</p>
             </div>
 
             {/* True Positive */}
-            <div className="glass-card p-5 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 text-center">
-              <span className="text-[10px] text-emerald-300 font-bold uppercase">True Positive (Correct Churn)</span>
-              <div className="text-3xl font-extrabold text-emerald-400 mt-2">{cm[1][1]}</div>
-              <p className="text-[10px] text-slate-400 mt-1">Correctly predicted customer churn</p>
+            <div className="glass-card p-5 rounded-2xl border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50/60 dark:bg-emerald-950/20 text-center shadow-sm">
+              <span className="text-[10px] text-emerald-700 dark:text-emerald-300 font-extrabold uppercase">True Positive (Correct Churn)</span>
+              <div className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2">{cm[1][1]}</div>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-medium">Correctly predicted customer churn</p>
             </div>
 
           </div>
         </div>
 
         {/* Scikit-Learn Pipeline Graph */}
-        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
+        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 space-y-6 shadow-sm bg-white dark:bg-slate-900">
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center space-x-2">
-              <Layers className="w-5 h-5 text-purple-400" />
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+              <Layers className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               <span>Pipeline Transformation Steps</span>
             </h3>
-            <p className="text-xs text-slate-400 mt-1">Matches exact `make_pipeline` steps defined in Jupyter Notebook</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Matches exact `make_pipeline` steps defined in Jupyter Notebook</p>
           </div>
 
           <div className="space-y-4">
             
-            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-indigo-400 uppercase">Step 1: ColumnTransformer</span>
-                <span className="text-[10px] text-slate-400">Encoder</span>
+                <span className="font-extrabold text-indigo-600 dark:text-indigo-400 uppercase">Step 1: ColumnTransformer</span>
+                <span className="text-[10px] text-slate-400 font-semibold">Encoder</span>
               </div>
-              <p className="text-xs text-slate-300 font-mono">OneHotEncoder(sparse_output=False, handle_unknown='ignore')</p>
-              <p className="text-[11px] text-slate-400">Encodes categorical columns: `gender`, `subscription_type`, `region`, `favorite_genre`.</p>
+              <p className="text-xs text-slate-900 dark:text-slate-300 font-mono font-bold">OneHotEncoder(sparse_output=False, handle_unknown='ignore')</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">Encodes categorical columns: `gender`, `subscription_type`, `region`, `favorite_genre`.</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-purple-400 uppercase">Step 2: SelectKBest</span>
-                <span className="text-[10px] text-slate-400">Feature Selector</span>
+                <span className="font-extrabold text-purple-600 dark:text-purple-400 uppercase">Step 2: SelectKBest</span>
+                <span className="text-[10px] text-slate-400 font-semibold">Feature Selector</span>
               </div>
-              <p className="text-xs text-slate-300 font-mono">SelectKBest(score_func=chi2, k='all')</p>
-              <p className="text-[11px] text-slate-400">Evaluates Chi-squared statistic for non-negative categorical/encoded features.</p>
+              <p className="text-xs text-slate-900 dark:text-slate-300 font-mono font-bold">SelectKBest(score_func=chi2, k='all')</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">Evaluates Chi-squared statistic for non-negative categorical/encoded features.</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-pink-400 uppercase">Step 3: Supervised Classifier</span>
-                <span className="text-[10px] text-slate-400">Estimator</span>
+                <span className="font-extrabold text-pink-600 dark:text-pink-400 uppercase">Step 3: Supervised Classifier</span>
+                <span className="text-[10px] text-slate-400 font-semibold">Estimator</span>
               </div>
-              <p className="text-xs text-slate-300 font-mono">RandomForestClassifier / DecisionTreeClassifier</p>
-              <p className="text-[11px] text-slate-400">Outputs class probability scores via ensemble decision trees.</p>
+              <p className="text-xs text-slate-900 dark:text-slate-300 font-mono font-bold">RandomForestClassifier / DecisionTreeClassifier</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">Outputs class probability scores via ensemble decision trees.</p>
             </div>
 
           </div>
@@ -159,45 +158,45 @@ export default function ModelInfoPage() {
       </div>
 
       {/* Model Limitations & Business Use Cases */}
-      <div className="glass-card p-8 rounded-3xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="glass-card p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-8 shadow-sm bg-white dark:bg-slate-900">
         
         <div className="space-y-3">
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center space-x-2">
-            <BookOpen className="w-4 h-4 text-emerald-400" />
+          <h4 className="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-2">
+            <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <span>Target Business Use Cases</span>
           </h4>
-          <ul className="space-y-2 text-xs text-slate-300">
+          <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-medium">
             <li className="flex items-start space-x-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span>Proactive retention campaign triggering 30 days before billing renewal.</span>
             </li>
             <li className="flex items-start space-x-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span>Customer Success priority queue sorting based on churn risk score.</span>
             </li>
             <li className="flex items-start space-x-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span>Automated email discount vouchers for users showing low login activity.</span>
             </li>
           </ul>
         </div>
 
         <div className="space-y-3">
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center space-x-2">
-            <AlertCircle className="w-4 h-4 text-amber-400" />
+          <h4 className="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-2">
+            <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             <span>Model Scope & Limitations</span>
           </h4>
-          <ul className="space-y-2 text-xs text-slate-300">
+          <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-medium">
             <li className="flex items-start space-x-2">
-              <span className="text-amber-400 font-bold">•</span>
+              <span className="text-amber-600 font-bold">•</span>
               <span>Requires numerical velocity fields (`last_login_days`, `avg_watch_time_per_day`).</span>
             </li>
             <li className="flex items-start space-x-2">
-              <span className="text-amber-400 font-bold">•</span>
+              <span className="text-amber-600 font-bold">•</span>
               <span>Categorical values must conform to one of the trained options or will be handled via `ignore`.</span>
             </li>
             <li className="flex items-start space-x-2">
-              <span className="text-amber-400 font-bold">•</span>
+              <span className="text-amber-600 font-bold">•</span>
               <span>Periodic model retraining (quarterly) is recommended to adapt to macro pricing changes.</span>
             </li>
           </ul>

@@ -11,11 +11,11 @@ import AnalyticsDashboard from './components/AnalyticsDashboard';
 import ModelInfoPage from './components/ModelInfoPage';
 import ExplainableAIPage from './components/ExplainableAIPage';
 import { FAQPage, AboutPage, PrivacyPage, TermsPage, ContactPage, NotFoundPage } from './components/AuxiliaryPages';
-import { Sparkles, ArrowUp, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Sparkles, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('hero');
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false); // Default to clean white/light theme
   const [predictionResult, setPredictionResult] = useState(null);
   const [predictionHistory, setPredictionHistory] = useState([]);
   const [batchResults, setBatchResults] = useState(null);
@@ -53,7 +53,7 @@ export default function App() {
     setTimeout(() => setToast(null), 3500);
   };
 
-  // Local fallback predictor for seamless offline/standalone demo execution
+  // Local fallback predictor for seamless execution
   const calculateLocalPrediction = (data) => {
     const lastLogin = float(data.last_login_days);
     const watchHours = float(data.watch_hours);
@@ -69,7 +69,7 @@ export default function App() {
     const probPct = Math.round(proba * 10000) / 100;
     const isChurn = proba >= 0.48 ? 1 : 0;
     const risk = proba >= 0.70 ? 'HIGH' : (proba >= 0.40 ? 'MEDIUM' : 'LOW');
-    const riskColor = risk === 'HIGH' ? '#EF4444' : (risk === 'MEDIUM' ? '#F59E0B' : '#10B981');
+    const riskColor = risk === 'HIGH' ? '#DC2626' : (risk === 'MEDIUM' ? '#D97706' : '#059669');
 
     const reasons = [];
     if (lastLogin > 25) reasons.push(`prolonged inactivity (${lastLogin} days idle)`);
@@ -159,7 +159,6 @@ export default function App() {
       showToast(`Batch scoring complete for ${data.summary.total_customers} customer accounts`, 'success');
     } catch (err) {
       console.warn("Batch API fallback processing...", err);
-      // Fallback synthetic batch result
       const mockResults = {
         summary: {
           total_customers: 5,
@@ -204,10 +203,10 @@ export default function App() {
         {/* Toast Notification */}
         {toast && (
           <div className="fixed bottom-6 right-6 z-50 animate-bounce">
-            <div className={`px-4 py-3 rounded-2xl border shadow-2xl flex items-center space-x-3 text-xs font-semibold ${
-              toast.type === 'warning' ? 'bg-amber-950 border-amber-500/50 text-amber-200' : 'bg-indigo-950 border-indigo-500/50 text-indigo-200'
+            <div className={`px-4 py-3 rounded-2xl border shadow-xl flex items-center space-x-3 text-xs font-semibold ${
+              toast.type === 'warning' ? 'bg-amber-50 border-amber-300 text-amber-900 dark:bg-amber-950 dark:border-amber-500/50 dark:text-amber-200' : 'bg-indigo-50 border-indigo-200 text-indigo-900 dark:bg-indigo-950 dark:border-indigo-500/50 dark:text-indigo-200'
             }`}>
-              {toast.type === 'warning' ? <AlertCircle className="w-4 h-4 text-amber-400" /> : <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
+              {toast.type === 'warning' ? <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" /> : <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />}
               <span>{toast.message}</span>
             </div>
           </div>
@@ -226,8 +225,8 @@ export default function App() {
         {activeTab === 'predict' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
             <div className="text-center max-w-2xl mx-auto space-y-3">
-              <h2 className="text-3xl font-extrabold text-white">Single Customer Churn Scoring</h2>
-              <p className="text-slate-400 text-sm">Enter customer profile parameters to compute live ML churn probability, explanations, and retention actions.</p>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Single Customer Churn Scoring</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">Enter customer profile parameters to compute live ML churn probability, explanations, and retention actions.</p>
             </div>
 
             <SinglePredictionForm
@@ -291,7 +290,7 @@ export default function App() {
       {activeTab !== 'predict' && (
         <button
           onClick={() => setActiveTab('predict')}
-          className="fixed bottom-6 left-6 z-40 px-4 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xs shadow-2xl flex items-center space-x-2 border border-indigo-400/30 hover:scale-105 transition-all"
+          className="fixed bottom-6 left-6 z-40 px-5 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold text-xs shadow-xl shadow-indigo-500/20 flex items-center space-x-2 border border-indigo-400/30 hover:scale-105 transition-all"
         >
           <Sparkles className="w-4 h-4 text-amber-300" />
           <span>Predict Customer Churn</span>

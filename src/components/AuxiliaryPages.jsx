@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, ShieldCheck, Mail, FileText, AlertTriangle } from 'lucide-react';
+import { ChevronDown, AlertTriangle } from 'lucide-react';
 
 export function FAQPage() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -30,22 +30,22 @@ export function FAQPage() {
   return (
     <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto">
       <div className="text-center space-y-3">
-        <h2 className="text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
-        <p className="text-slate-400 text-sm">Everything you need to know about ChurnGuard AI architecture and deployment</p>
+        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm font-medium">Everything you need to know about ChurnGuard AI architecture and deployment</p>
       </div>
 
       <div className="space-y-4">
         {faqs.map((faq, idx) => (
-          <div key={idx} className="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <div key={idx} className="glass-card rounded-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden shadow-sm bg-white dark:bg-slate-900">
             <button
               onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              className="w-full p-5 text-left flex items-center justify-between font-bold text-white text-sm hover:text-indigo-300 transition-colors"
+              className="w-full p-5 text-left flex items-center justify-between font-bold text-slate-900 dark:text-white text-sm hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors"
             >
               <span>{faq.q}</span>
-              <ChevronDown className={`w-4 h-4 text-indigo-400 transform transition-transform ${openIndex === idx ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-indigo-600 dark:text-indigo-400 transform transition-transform ${openIndex === idx ? 'rotate-180' : ''}`} />
             </button>
             {openIndex === idx && (
-              <div className="p-5 pt-0 text-xs text-slate-300 leading-relaxed border-t border-slate-800/60 mt-1">
+              <div className="p-5 pt-0 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 mt-1 font-medium">
                 {faq.a}
               </div>
             )}
@@ -59,19 +59,19 @@ export function FAQPage() {
 export function AboutPage() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto animate-fadeIn">
-      <div className="glass-card p-8 sm:p-10 rounded-3xl border border-slate-800 space-y-6">
-        <h2 className="text-3xl font-extrabold text-white">About ChurnGuard AI</h2>
-        <p className="text-slate-300 text-sm leading-relaxed">
+      <div className="glass-card p-8 sm:p-10 rounded-3xl border border-slate-200/90 dark:border-slate-800 space-y-6 shadow-sm bg-white dark:bg-slate-900">
+        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">About ChurnGuard AI</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium">
           ChurnGuard AI was transformed from an exploratory Customer Churn Prediction Jupyter Notebook into a full-stack, enterprise-grade AI SaaS web application.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-            <h4 className="text-sm font-bold text-white">Frontend Tech Stack</h4>
-            <p className="text-xs text-slate-400">Vite, React 18, Tailwind CSS, Lucide Icons, Recharts visual analytics, Glassmorphism design language.</p>
+          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">Frontend Tech Stack</h4>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Vite, React 18, Tailwind CSS, Lucide Icons, Recharts visual analytics, Glassmorphism design language.</p>
           </div>
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-            <h4 className="text-sm font-bold text-white">Backend & ML Stack</h4>
-            <p className="text-xs text-slate-400">Python 3.12, Scikit-Learn 1.8.0, Pandas, NumPy, Flask local server, Vercel Serverless Python runtime.</p>
+          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">Backend & ML Stack</h4>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Python 3.12, Scikit-Learn 1.8.0, Pandas, NumPy, Flask local server, Vercel Serverless Python runtime.</p>
           </div>
         </div>
       </div>
@@ -81,8 +81,8 @@ export function AboutPage() {
 
 export function PrivacyPage() {
   return (
-    <div className="glass-card p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto space-y-4 text-xs text-slate-300">
-      <h2 className="text-2xl font-bold text-white mb-4">Privacy Policy</h2>
+    <div className="glass-card p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 max-w-4xl mx-auto space-y-4 text-xs text-slate-600 dark:text-slate-300 font-medium shadow-sm bg-white dark:bg-slate-900">
+      <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Privacy Policy</h2>
       <p>Your privacy is important to us. Customer data submitted for prediction is processed strictly in-memory by our serverless inference functions and is never permanently stored or shared with third parties.</p>
       <p>Uploaded CSV files for batch prediction are processed statelessly and discarded immediately after prediction output generation.</p>
     </div>
@@ -91,8 +91,8 @@ export function PrivacyPage() {
 
 export function TermsPage() {
   return (
-    <div className="glass-card p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto space-y-4 text-xs text-slate-300">
-      <h2 className="text-2xl font-bold text-white mb-4">Terms of Service</h2>
+    <div className="glass-card p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 max-w-4xl mx-auto space-y-4 text-xs text-slate-600 dark:text-slate-300 font-medium shadow-sm bg-white dark:bg-slate-900">
+      <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Terms of Service</h2>
       <p>ChurnGuard AI is provided for predictive customer analytics and retention modeling purposes. While our model achieves high accuracy (96.2%), predictions represent statistical probabilities and should be combined with qualitative business judgement.</p>
     </div>
   );
@@ -102,31 +102,31 @@ export function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div className="glass-card p-8 rounded-3xl border border-slate-800 max-w-2xl mx-auto space-y-6">
+    <div className="glass-card p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 max-w-2xl mx-auto space-y-6 shadow-sm bg-white dark:bg-slate-900">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-white">Contact Engineering Team</h2>
-        <p className="text-xs text-slate-400">Have questions about model integration or Vercel deployment?</p>
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Contact Engineering Team</h2>
+        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Have questions about model integration or Vercel deployment?</p>
       </div>
 
       {submitted ? (
-        <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-center text-sm font-semibold">
+        <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 dark:bg-emerald-500/10 dark:border-emerald-500/30 dark:text-emerald-300 text-center text-sm font-bold shadow-sm">
           Thank you! Your message has been received by our engineering team.
         </div>
       ) : (
         <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4 text-xs">
           <div>
-            <label className="block text-slate-300 font-semibold mb-1">Your Name</label>
-            <input type="text" required placeholder="John Doe" className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500" />
+            <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Your Name</label>
+            <input type="text" required placeholder="John Doe" className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-indigo-500" />
           </div>
           <div>
-            <label className="block text-slate-300 font-semibold mb-1">Work Email</label>
-            <input type="email" required placeholder="john@company.com" className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500" />
+            <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Work Email</label>
+            <input type="email" required placeholder="john@company.com" className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-indigo-500" />
           </div>
           <div>
-            <label className="block text-slate-300 font-semibold mb-1">Message</label>
-            <textarea rows="4" required placeholder="Describe your inquiry..." className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500"></textarea>
+            <label className="block text-slate-700 dark:text-slate-300 font-bold mb-1">Message</label>
+            <textarea rows="4" required placeholder="Describe your inquiry..." className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-indigo-500"></textarea>
           </div>
-          <button type="submit" className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg">Send Message</button>
+          <button type="submit" className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-500/20">Send Message</button>
         </form>
       )}
     </div>
@@ -136,12 +136,12 @@ export function ContactPage() {
 export function NotFoundPage({ setActiveTab }) {
   return (
     <div className="text-center py-20 space-y-6">
-      <div className="w-20 h-20 rounded-3xl bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto border border-rose-500/30">
+      <div className="w-20 h-20 rounded-3xl bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto border border-rose-200 dark:border-rose-500/30">
         <AlertTriangle className="w-10 h-10" />
       </div>
-      <h2 className="text-4xl font-extrabold text-white">404 - Page Not Found</h2>
-      <p className="text-slate-400 text-sm max-w-md mx-auto">The page or prediction module you are looking for does not exist.</p>
-      <button onClick={() => setActiveTab('hero')} className="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm">Return to Home</button>
+      <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white">404 - Page Not Found</h2>
+      <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto font-medium">The page or prediction module you are looking for does not exist.</p>
+      <button onClick={() => setActiveTab('hero')} className="px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-md">Return to Home</button>
     </div>
   );
 }

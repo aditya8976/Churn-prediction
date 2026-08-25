@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, FileSpreadsheet, Download, Printer, CheckCircle2, AlertCircle, RefreshCw, Search, Filter } from 'lucide-react';
+import { Upload, FileSpreadsheet, Download, Printer, AlertCircle, RefreshCw, Search, Filter } from 'lucide-react';
 
 export default function BatchPrediction({ onBatchPredict, batchResults, loading }) {
   const [dragOver, setDragOver] = useState(false);
@@ -78,19 +78,19 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
     <div className="space-y-8">
       
       {/* CSV File Upload Card */}
-      <div className="glass-card p-8 rounded-3xl border border-slate-800 space-y-6">
+      <div className="glass-card p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 space-y-6 shadow-sm bg-white dark:bg-slate-900">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center space-x-2">
-              <FileSpreadsheet className="w-6 h-6 text-indigo-400" />
+            <h3 className="text-xl font-extrabold text-slate-900 dark:text-white flex items-center space-x-2">
+              <FileSpreadsheet className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
               <span>Batch Customer CSV Scoring</span>
             </h3>
-            <p className="text-xs text-slate-400 mt-1">Upload CSV datasets to calculate churn probability for thousands of users</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Upload CSV datasets to calculate churn probability for thousands of users</p>
           </div>
 
           <button
             onClick={downloadSampleTemplate}
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold flex items-center space-x-2 border border-slate-700 transition-all w-fit"
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 text-xs font-bold flex items-center space-x-2 border border-slate-200 dark:border-slate-700 transition-all w-fit shadow-sm"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Sample CSV Template</span>
@@ -103,7 +103,7 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
           className={`border-2 border-dashed rounded-2xl p-10 text-center transition-all cursor-pointer ${
-            dragOver ? 'border-indigo-500 bg-indigo-500/10' : 'border-slate-800 hover:border-slate-700 bg-slate-900/40'
+            dragOver ? 'border-indigo-500 bg-indigo-50/50 dark:bg-indigo-500/10' : 'border-slate-300 dark:border-slate-800 hover:border-slate-400 bg-slate-50/50 dark:bg-slate-900/40'
           }`}
         >
           <input
@@ -114,26 +114,26 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
             id="csv-upload-input"
           />
           <label htmlFor="csv-upload-input" className="cursor-pointer space-y-3 block">
-            <div className="w-14 h-14 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center mx-auto border border-indigo-500/30">
+            <div className="w-14 h-14 rounded-2xl bg-indigo-100 dark:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto border border-indigo-200 dark:border-indigo-500/30 shadow-sm">
               <Upload className="w-7 h-7" />
             </div>
             <div>
-              <span className="text-sm font-bold text-white">Click to browse CSV file</span>
-              <span className="text-xs text-slate-400 block mt-1">or drag and drop CSV file directly here</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">Click to browse CSV file</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 block mt-1 font-medium">or drag and drop CSV file directly here</span>
             </div>
-            <p className="text-[11px] text-slate-500">Supports standard customer schema: age, gender, subscription_type, watch_hours, last_login_days, region, monthly_fee, number_of_profiles, avg_watch_time_per_day, favorite_genre</p>
+            <p className="text-[11px] text-slate-400 font-medium">Supports standard customer schema: age, gender, subscription_type, watch_hours, last_login_days, region, monthly_fee, number_of_profiles, avg_watch_time_per_day, favorite_genre</p>
           </label>
         </div>
 
         {errorMsg && (
-          <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center space-x-2">
+          <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 dark:bg-rose-500/10 dark:border-rose-500/30 dark:text-rose-300 text-xs flex items-center space-x-2 font-semibold">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
         )}
 
         {loading && (
-          <div className="flex items-center justify-center space-x-3 py-6 text-indigo-400 text-sm font-semibold">
+          <div className="flex items-center justify-center space-x-3 py-6 text-indigo-600 dark:text-indigo-400 text-sm font-bold">
             <RefreshCw className="w-5 h-5 animate-spin" />
             <span>Processing CSV Batch Scoring...</span>
           </div>
@@ -146,32 +146,32 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
           
           {/* Summary KPIs */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="glass-card p-5 rounded-2xl border border-slate-800 text-center">
-              <span className="text-xs text-slate-400 font-semibold uppercase">Total Scored</span>
-              <div className="text-3xl font-extrabold text-white mt-1">{batchResults.summary.total_customers}</div>
+            <div className="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 text-center shadow-sm bg-white dark:bg-slate-900">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase">Total Scored</span>
+              <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">{batchResults.summary.total_customers}</div>
             </div>
 
-            <div className="glass-card p-5 rounded-2xl border border-rose-500/30 bg-rose-950/10 text-center">
-              <span className="text-xs text-rose-300 font-semibold uppercase">Predicted Churn</span>
-              <div className="text-3xl font-extrabold text-rose-400 mt-1">{batchResults.summary.predicted_churn_count}</div>
-              <div className="text-[11px] text-rose-300">{batchResults.summary.churn_rate_percent}% churn rate</div>
+            <div className="glass-card p-5 rounded-2xl border border-rose-200 dark:border-rose-500/30 bg-rose-50/50 dark:bg-rose-950/10 text-center shadow-sm">
+              <span className="text-xs text-rose-700 dark:text-rose-300 font-bold uppercase">Predicted Churn</span>
+              <div className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-1">{batchResults.summary.predicted_churn_count}</div>
+              <div className="text-[11px] text-rose-600 dark:text-rose-300 font-semibold">{batchResults.summary.churn_rate_percent}% churn rate</div>
             </div>
 
-            <div className="glass-card p-5 rounded-2xl border border-amber-500/30 bg-amber-950/10 text-center">
-              <span className="text-xs text-amber-300 font-semibold uppercase">High Risk Users</span>
-              <div className="text-3xl font-extrabold text-amber-400 mt-1">{batchResults.summary.high_risk_count}</div>
+            <div className="glass-card p-5 rounded-2xl border border-amber-200 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/10 text-center shadow-sm">
+              <span className="text-xs text-amber-700 dark:text-amber-300 font-bold uppercase">High Risk Users</span>
+              <div className="text-3xl font-extrabold text-amber-600 dark:text-amber-400 mt-1">{batchResults.summary.high_risk_count}</div>
             </div>
 
-            <div className="glass-card p-5 rounded-2xl border border-indigo-500/30 text-center">
-              <span className="text-xs text-indigo-300 font-semibold uppercase">Avg Churn Prob</span>
-              <div className="text-3xl font-extrabold text-indigo-400 mt-1">{batchResults.summary.average_churn_probability}%</div>
+            <div className="glass-card p-5 rounded-2xl border border-indigo-200 dark:border-indigo-500/30 bg-indigo-50/50 dark:bg-indigo-950/10 text-center shadow-sm">
+              <span className="text-xs text-indigo-700 dark:text-indigo-300 font-bold uppercase">Avg Churn Prob</span>
+              <div className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 mt-1">{batchResults.summary.average_churn_probability}%</div>
             </div>
           </div>
 
           {/* Interactive Results Table */}
-          <div className="glass-card p-6 rounded-3xl border border-slate-800 space-y-4">
+          <div className="glass-card p-6 rounded-3xl border border-slate-200/90 dark:border-slate-800 space-y-4 shadow-sm bg-white dark:bg-slate-900">
             
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
               <div className="flex items-center space-x-3">
                 <div className="relative">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
@@ -180,7 +180,7 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
                     placeholder="Search Customer ID / Genre..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500 w-64"
+                    className="pl-9 pr-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white font-medium focus:outline-none focus:border-indigo-500 w-64"
                   />
                 </div>
 
@@ -189,7 +189,7 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
                   <select
                     value={riskFilter}
                     onChange={(e) => setRiskFilter(e.target.value)}
-                    className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white font-medium focus:outline-none focus:border-indigo-500"
                   >
                     <option value="ALL">All Risk Tiers</option>
                     <option value="HIGH">High Risk Only</option>
@@ -202,7 +202,7 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
               <div className="flex items-center space-x-3">
                 <button
                   onClick={downloadResultsCSV}
-                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center space-x-2 shadow-md transition-all"
+                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center space-x-2 shadow-md shadow-indigo-500/20 transition-all"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download Scored CSV</span>
@@ -210,7 +210,7 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
 
                 <button
                   onClick={handlePrintPDF}
-                  className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 border border-slate-700 transition-all"
+                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center space-x-1.5 border border-slate-200 dark:border-slate-700 transition-all"
                 >
                   <Printer className="w-3.5 h-3.5" />
                   <span>Print Report</span>
@@ -221,7 +221,7 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
             {/* Table */}
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-900/80 text-slate-400 uppercase font-semibold border-b border-slate-800">
+                <thead className="bg-slate-50 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 uppercase font-extrabold border-b border-slate-200 dark:border-slate-800">
                   <tr>
                     <th className="py-3 px-4">Customer ID</th>
                     <th className="py-3 px-4">Sub Tier</th>
@@ -233,27 +233,27 @@ c-1005,62,Male,Premium,4.5,52,Africa,17.99,1,0.10,Horror`;
                     <th className="py-3 px-4">Suggested Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium">
                   {filteredPredictions.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-slate-900/40 transition-colors">
-                      <td className="py-3 px-4 font-mono font-semibold text-white">{row.customer_id || `User-${idx+1}`}</td>
-                      <td className="py-3 px-4 text-slate-300">{row.subscription_type}</td>
-                      <td className="py-3 px-4 text-slate-300">{row.last_login_days} days ago</td>
-                      <td className="py-3 px-4 text-slate-300">{row.avg_watch_time_per_day} hrs/day</td>
-                      <td className="py-3 px-4 font-semibold">
-                        <span className={`px-2 py-0.5 rounded text-[11px] ${row.churn_prediction === 'Will Churn' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'}`}>
+                    <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
+                      <td className="py-3 px-4 font-mono font-bold text-slate-900 dark:text-white">{row.customer_id || `User-${idx+1}`}</td>
+                      <td className="py-3 px-4 text-slate-700 dark:text-slate-300">{row.subscription_type}</td>
+                      <td className="py-3 px-4 text-slate-700 dark:text-slate-300">{row.last_login_days} days ago</td>
+                      <td className="py-3 px-4 text-slate-700 dark:text-slate-300">{row.avg_watch_time_per_day} hrs/day</td>
+                      <td className="py-3 px-4 font-bold">
+                        <span className={`px-2 py-0.5 rounded text-[11px] ${row.churn_prediction === 'Will Churn' ? 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300 border border-rose-200' : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300 border border-emerald-200'}`}>
                           {row.churn_prediction}
                         </span>
                       </td>
-                      <td className="py-3 px-4 font-bold text-white">{row['churn_probability_%']}%</td>
+                      <td className="py-3 px-4 font-extrabold text-slate-900 dark:text-white">{row['churn_probability_%']}%</td>
                       <td className="py-3 px-4">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                          row.risk_level === 'HIGH' ? 'bg-rose-500/20 text-rose-400' : (row.risk_level === 'MEDIUM' ? 'bg-amber-500/20 text-amber-400' : 'bg-emerald-500/20 text-emerald-400')
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${
+                          row.risk_level === 'HIGH' ? 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400' : (row.risk_level === 'MEDIUM' ? 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400' : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400')
                         }`}>
                           {row.risk_level}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-indigo-300 font-medium">{row.suggested_action}</td>
+                      <td className="py-3 px-4 text-indigo-600 dark:text-indigo-300 font-semibold">{row.suggested_action}</td>
                     </tr>
                   ))}
                 </tbody>
