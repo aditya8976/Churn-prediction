@@ -1,0 +1,107 @@
+{
+  "features": [
+    "age",
+    "gender",
+    "subscription_type",
+    "watch_hours",
+    "last_login_days",
+    "region",
+    "monthly_fee",
+    "number_of_profiles",
+    "avg_watch_time_per_day",
+    "favorite_genre"
+  ],
+  "categorical_features": [
+    "gender",
+    "subscription_type",
+    "region",
+    "favorite_genre"
+  ],
+  "numerical_features": [
+    "age",
+    "watch_hours",
+    "last_login_days",
+    "monthly_fee",
+    "number_of_profiles",
+    "avg_watch_time_per_day"
+  ],
+  "categorical_options": {
+    "gender": [
+      "Male",
+      "Female",
+      "Other"
+    ],
+    "subscription_type": [
+      "Basic",
+      "Standard",
+      "Premium"
+    ],
+    "region": [
+      "North America",
+      "Europe",
+      "Asia",
+      "South America",
+      "Africa"
+    ],
+    "favorite_genre": [
+      "Action",
+      "Comedy",
+      "Drama",
+      "Horror",
+      "Sci-Fi",
+      "Documentary",
+      "Romance"
+    ]
+  },
+  "numerical_ranges": {
+    "age": {
+      "min": 18,
+      "max": 70,
+      "default": 35
+    },
+    "watch_hours": {
+      "min": 0.0,
+      "max": 120.0,
+      "default": 15.5
+    },
+    "last_login_days": {
+      "min": 1,
+      "max": 60,
+      "default": 12
+    },
+    "monthly_fee": {
+      "min": 8.99,
+      "max": 17.99,
+      "default": 13.99
+    },
+    "number_of_profiles": {
+      "min": 1,
+      "max": 5,
+      "default": 2
+    },
+    "avg_watch_time_per_day": {
+      "min": 0.01,
+      "max": 8.0,
+      "default": 0.85
+    }
+  },
+  "metrics": {
+    "accuracy": 0.962,
+    "precision": 0.964,
+    "recall": 0.9944,
+    "f1_score": 0.979,
+    "roc_auc": 0.979,
+    "confusion_matrix": [
+      [
+        78,
+        33
+      ],
+      [
+        5,
+        884
+      ]
+    ],
+    "dataset_size": 5000,
+    "test_size": 1000
+  }
+}
