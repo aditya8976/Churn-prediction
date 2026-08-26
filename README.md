@@ -1,6 +1,8 @@
 # 🛡️ ChurnGuard AI — Enterprise Customer Churn Prediction & Retention SaaS
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deploy--Ready-black?logo=vercel)](https://vercel.com)
+🚀 **Preview**: [https://churn-prediction-eta.vercel.app/](https://churn-prediction-eta.vercel.app/)
+
+[![Preview](https://img.shields.io/badge/Preview-Live%20Demo-000000?logo=vercel)](https://churn-prediction-eta.vercel.app/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)](https://python.org)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.8.0-orange?logo=scikit-learn)](https://scikit-learn.org)
 [![React](https://img.shields.io/badge/React-18.2-cyan?logo=react)](https://react.dev)
